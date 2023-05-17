@@ -4,9 +4,10 @@ import "./App.css";
 import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Menu from "./FoodMenu";
 import Snack from "./FoodItem";
+import NotFound from "./NotFound";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,20 +31,12 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <main>
-          <Switch>
-            <Route exact path="/">
-              <Home snacks={snacks} />
-            </Route>
-            <Route exact path="/snacks">
-              <Menu snacks={snacks} title="Snacks" />
-            </Route>
-            <Route path="/snacks/:id">
-              <Snack items={snacks} cantFind="/snacks" />
-            </Route>
-            <Route>
-              <p>Hmmm. I can't seem to find what you want.</p>
-            </Route>
-          </Switch>
+          <Routes>
+            <Route exact path="/" element= { <Home snacks={snacks} />}/>
+            <Route exact path="/snacks" element= { <Menu snacks={snacks} title="Snacks" />}/>
+            <Route path="/snacks/:id" element={ <Snack items={snacks} cantFind="/snacks" />}/>
+            <Route path="*" element= {<NotFound/>}/>
+          </Routes>
         </main>
       </BrowserRouter>
     </div>
