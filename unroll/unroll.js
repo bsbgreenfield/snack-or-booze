@@ -8,8 +8,6 @@ function unroll(squareArray) {
 
     // define resultArray
     const resultArray = [];
-    let scanType = 'forwards';
-    let digType = 'down';
 
     // define scan
     function scan(currSqaureArray, scanType) {
@@ -17,7 +15,6 @@ function unroll(squareArray) {
         if (scanType == 'forwards') {
             for (i = 0; i <= currSqaureArray[0].length - 1; i++) {
                 resultArray.push(currSqaureArray[0][i])
-                console.log('scanning forwards', resultArray)
             }
             currSqaureArray.splice(0, 1)
             if (currSqaureArray.length) dig(currSqaureArray, 'down')
@@ -26,7 +23,6 @@ function unroll(squareArray) {
         else {
             for (i = currSqaureArray[currSqaureArray.length - 1].length - 1; i >= 0; i--) {
                 resultArray.push(currSqaureArray[currSqaureArray.length - 1][i])
-                console.log('scanning backwards', resultArray)
             }
             currSqaureArray.splice(currSqaureArray.length - 1, 1)
             if (currSqaureArray.length) dig(currSqaureArray, 'up')
@@ -38,7 +34,6 @@ function unroll(squareArray) {
         if (digType == 'down') {
             for (array of currSqaureArray) {
                 resultArray.push(array.pop())
-                console.log('digging down', resultArray)
             }
             if(currSqaureArray.length) scan(currSqaureArray, 'backwards')
         }
@@ -46,7 +41,6 @@ function unroll(squareArray) {
         else {
             for (let i = currSqaureArray.length - 1; i >= 0; i--) {
                 resultArray.push(currSqaureArray[i].shift())
-                console.log('digging up', resultArray)
             }
             if(currSqaureArray.length) scan(currSqaureArray, 'forwards')
         }
@@ -59,11 +53,11 @@ function unroll(squareArray) {
     
     return (resultArray)
 }
-console.log(unroll(
-    [
-        ["a", "b", "c"],
-        ["d", "e", "f"],
-        ["g", "h", "i"]
-    ]
-))
+/* console.log(unroll([
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]
+  ]
+)) */
 module.exports = unroll;

@@ -19,8 +19,8 @@ function App() {
     /**
      * Called in the AddItem component, updates state based on type of item (snack or drink)
      */
-    if(type == 'snack') setSnacks([...snacks, item])
-    else if(type == 'drink') setDrinks([...drinks, item])
+    if(type === 'snack') setSnacks([...snacks, item])
+    else if(type === 'drink') setDrinks([...drinks, item])
   }
   useEffect(() => {
     async function getItems() {
