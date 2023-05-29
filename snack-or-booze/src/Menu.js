@@ -10,7 +10,10 @@ import {
   ListGroupItem
 } from "reactstrap";
 
-function FoodMenu({ snacks }) {
+function FoodMenu({ items, title }) {
+  /**
+   * updated to link to snack or drink depending on title attr. of item
+   */
   return (
     <section className="col-md-4">
       <Card>
@@ -23,9 +26,9 @@ function FoodMenu({ snacks }) {
             bulk of the card's content.
           </CardText>
           <ListGroup>
-            {snacks.map(snack => (
-              <Link to={`/snacks/${snack.id}`} key={snack.id}>
-                <ListGroupItem>{snack.name}</ListGroupItem>
+            {items.map(items => (
+              <Link to={`/${title.toLowerCase()}/${items.id}`} key={items.id}> 
+                <ListGroupItem>{items.name}</ListGroupItem>
               </Link>
             ))}
           </ListGroup>
